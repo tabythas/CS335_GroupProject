@@ -9,10 +9,8 @@ import java.awt.image.BufferedImage;
 public class gui implements ActionListener {
     private JFrame mainFrame;
     private JPanel mainPanel;
-    private JLabel mainLabel;
     private JPanel firstQuestion;
-    private JPanel secondQuestion;
-    private JLabel firstQuestionLabel;
+    private JPanel firstQuestionSummary;
     
     public gui() throws IOException{
         // create main frame
@@ -24,6 +22,7 @@ public class gui implements ActionListener {
         mainButton.addActionListener(this);
 
         // label to show the user what they are using
+        JLabel mainLabel = new JLabel();
         mainLabel = new JLabel("Test Your Art Knowledge (or lack thereof)!");
 
         // each "page" will be a panel
@@ -58,8 +57,8 @@ public class gui implements ActionListener {
             // build next panel
             firstQuestion = new JPanel();
             firstQuestion.setBorder(BorderFactory.createEmptyBorder(100, 100, 100, 100));
-           // firstQuestion.setLayout(new FlowLayout());
 
+            JLabel firstQuestionLabel = new JLabel(); 
             firstQuestionLabel = new JLabel("Who is the artist of this painting?");
             firstQuestion.add(firstQuestionLabel);
             
@@ -73,6 +72,7 @@ public class gui implements ActionListener {
             firstImage.setIcon(image);
             firstQuestion.add(firstImage);
 
+            // create four buttons for potential answers
             JButton firstQuestionButtonA = new JButton("A) Monet");
             firstQuestionButtonA.setPreferredSize(new Dimension(221,25));
             firstQuestion.add(firstQuestionButtonA);
@@ -88,9 +88,11 @@ public class gui implements ActionListener {
             JButton firstQuestionButtonD = new JButton("D) Picaso");
             firstQuestionButtonD.setPreferredSize(new Dimension(221,25));
             firstQuestion.add(firstQuestionButtonD);
+            
             // add firstQuestion panel to the mainFrame for it to be visible
             mainFrame.add(firstQuestion, BorderLayout.CENTER);
 
+            // if one of the three incorrect answers are selected, the button turns red and is disabled
             firstQuestionButtonB.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent fcB) {
                     firstQuestionButtonB.setBackground(Color.RED);
@@ -110,37 +112,38 @@ public class gui implements ActionListener {
                 }
             });
 
-            // when first question is clicked, panel is set to visible=false
+            // when correct answer is clicked, panel is set to visible=false and summary panel will appear
             firstQuestionButtonA.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent fcA) {
                     firstQuestion.setVisible(false);
                     
-                    try {
-                        secondQuestion = new JPanel();
-                        secondQuestion.setBorder(BorderFactory.createEmptyBorder(200, 200, 200, 200));
+                    // panel to summarize information about painting 
+                    firstQuestionSummary = new JPanel();
+                    firstQuestionSummary.setBorder(BorderFactory.createEmptyBorder(100, 100, 100, 100));
 
-                        JButton secondQuestionButton = new JButton("NEXT");
-                        secondQuestion.add(secondQuestionButton);
-                        mainFrame.add(secondQuestion, BorderLayout.CENTER);
+                    JLabel firstQuestionCorrect = new JLabel();
+                    firstQuestionCorrect = new JLabel("CORRECT");
+                    Color correct = new Color(0, 153, 0);
+                    firstQuestionCorrect.setForeground(correct);
+                    
+                    JLabel firstQuestionDescription = new JLabel();
+                    firstQuestionDescription = new JLabel("The 'Impression Sunrise' was painted by Claude Monet in 1872. This painting depicts the port of Le Havre which is Monet's hometown.");
 
-                        File file2 = new File("C:\\Users\\tabyt\\OneDrive\\Desktop\\CS335_SoftwareEngineering\\CS335_GroupProject\\impression_sunrise.png");
-                        BufferedImage bufferedImage2 = ImageIO.read(file2);
-                        ImageIcon image2 = new ImageIcon(bufferedImage2);
-                        // need label to hold image
-                        JLabel secondImage = new JLabel();
-                        // add image to panel by setting icon
-                        secondImage.setIcon(image2);
-                        secondQuestion.add(secondImage, BorderLayout.NORTH);
+                    firstQuestionSummary.add(firstQuestionCorrect);
+                    firstQuestionSummary.add(firstQuestionDescription);
+                    firstQuestionSummary.add(firstImage);
 
-                        secondQuestionButton.addActionListener(new ActionListener() {
-                            public void actionPerformed(ActionEvent sc){
-                                secondQuestion.setVisible(false);
-                            }
-                        });
-                    }
-                    catch (IOException ioe){
-                        ioe.printStackTrace(System.err);
-                    }
+                    JButton firstQuestionContinue = new JButton("Continue");
+                    firstQuestionContinue.setPreferredSize(new Dimension(221,25));
+                    firstQuestionSummary.add(firstQuestionContinue);
+                    mainFrame.add(firstQuestionSummary, BorderLayout.CENTER);
+                    
+                    firstQuestionContinue.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent sc){
+                            firstQuestionSummary.setVisible(false);
+                        }
+                    });
+                    
                 }
             });
         }
