@@ -36,7 +36,7 @@ public class gui implements ActionListener {
 
         // each "page" will be a panel
         mainPanel = new JPanel();
-        mainPanel.setBorder(BorderFactory.createEmptyBorder(300, 300, 300, 300));
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(275, 275, 275, 275));
         mainPanel.setLayout(new GridLayout(0, 1));
         // need to add components into the panel 
         mainPanel.add(mainLabel);
@@ -48,7 +48,7 @@ public class gui implements ActionListener {
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // setting frame title
         mainFrame.setTitle("Art Quiz");
-        mainFrame.pack();
+        mainFrame.setSize(850,650);
         mainFrame.setVisible(true);
 
     }
@@ -133,7 +133,8 @@ public class gui implements ActionListener {
                 mainLabel.setForeground(correct);
                     
                 JLabel firstQuestionDescription = new JLabel();
-                firstQuestionDescription = new JLabel("The 'Impression Sunrise' was painted by Claude Monet in 1872. This painting depicts the port of Le Havre which is Monet's hometown.");
+                firstQuestionDescription = new JLabel("The 'Impression Sunrise' was painted by Claude Monet in 1872."
+                                            + " This painting depicts the port of Le Havre which is Monet's hometown.");
 
                 firstQuestionSummary.add(mainLabel);
                 firstQuestionSummary.add(firstQuestionDescription);
@@ -216,7 +217,8 @@ public class gui implements ActionListener {
                         mainLabel.setForeground(correct);
                     
                         JLabel secondQuestionDescription = new JLabel();
-                        secondQuestionDescription = new JLabel("'The Great Wave off Kanagawa' was painted in 1831 by Japanese artist Hokusai. Considered 'the most famous artwork in Japanese history.'");
+                        secondQuestionDescription = new JLabel("'The Great Wave off Kanagawa' was painted in 1831 by Japanese artist Hokusai."
+                                                                + " Considered 'the most famous artwork in Japanese history.'");
 
                         secondQuestionSummary.add(mainLabel);
                         secondQuestionSummary.add(secondQuestionDescription);
@@ -299,7 +301,8 @@ public class gui implements ActionListener {
                                 mainLabel.setForeground(correct);
                     
                                 JLabel thirdQuestionDescription = new JLabel();
-                                thirdQuestionDescription = new JLabel("In the 19th century, Pierre-Auguste Renoir painted 'Bal du moulin de la Galette'. Captures the escence of a Paris outing.");
+                                thirdQuestionDescription = new JLabel("In the 19th century, Pierre-Auguste Renoir painted 'Bal du moulin de la Galette'." 
+                                                                    + "Captures the escence of a Paris outing.");
 
                                 thirdQuestionSummary.add(mainLabel);
                                 thirdQuestionSummary.add(thirdQuestionDescription);
@@ -382,7 +385,8 @@ public class gui implements ActionListener {
                                 mainLabel.setForeground(correct);
                     
                                 JLabel fourthQuestionDescription = new JLabel();
-                                fourthQuestionDescription = new JLabel("Vincet van Gogh is arguabely one of the world's most famous aritsts. 'Starry Night' was painted in 1889.");
+                                fourthQuestionDescription = new JLabel("Vincet van Gogh is arguabely one of the world's most famous aritsts. "
+                                                                        + "'Starry Night' was painted in 1889.");
 
                                 fourthQuestionSummary.add(mainLabel);
                                 fourthQuestionSummary.add(fourthQuestionDescription);
@@ -464,7 +468,8 @@ public class gui implements ActionListener {
                                 mainLabel.setForeground(correct);
                     
                                 JLabel fifthQuestionDescription = new JLabel();
-                                fifthQuestionDescription = new JLabel("By painting'A Sunday Afternoon on the Island of La Grande Jatte', Georges Seurat ushered in Neo-Impressionism in the 19th century.");
+                                fifthQuestionDescription = new JLabel("By painting'A Sunday Afternoon on the Island of La Grande Jatte', "
+                                                                    + "Georges Seurat ushered in Neo-Impressionism in the 19th century.");
 
                                 fifthQuestionSummary.add(mainLabel);
                                 fifthQuestionSummary.add(fifthQuestionDescription);
