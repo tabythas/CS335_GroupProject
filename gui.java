@@ -13,11 +13,10 @@ public class gui{
     private JButton century17th;
     private JButton century18th;
     private JButton century19th;
-    // sent variables for standard button width and height
+    // set variables for standard button width and height
     private int width = 221;
     private int height = 25;
-    
-    String[] centurySelected = {"16th Century", "17th Century", "18th Century", "19th Century"};
+
     String currentCentury = "";
     
     // counter for panel
@@ -31,6 +30,7 @@ public class gui{
     String[] summaryField = newClassobj.getSummaryArray();
     String[] correctAnswer = newClassobj.getCorrectAnswerArray();
     String[][] questionArray = newClassobj.getQuestionArray();
+    String[] centurySelected = newClassobj.getCentury();
     
     public gui(){
         // create main frame
@@ -79,41 +79,25 @@ public class gui{
         century16th.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent event) {
                 currentCentury = centurySelected[0];
-                mainButton.setEnabled(true);
-                century16th.setBackground(Color.GREEN);
-                century17th.setEnabled(false);
-                century18th.setEnabled(false);
-                century19th.setEnabled(false);
+                setCenturyButtons(mainButton, century16th, century17th, century18th, century19th);
             }
         });
         century17th.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent event) {
                 currentCentury = centurySelected[1];
-                mainButton.setEnabled(true);
-                century17th.setBackground(Color.GREEN);
-                century16th.setEnabled(false);
-                century18th.setEnabled(false);
-                century19th.setEnabled(false);
+                setCenturyButtons(mainButton, century17th, century16th, century18th, century19th);
             }
         });
         century18th.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent event) {
                 currentCentury = centurySelected[2];
-                mainButton.setEnabled(true);
-                century18th.setBackground(Color.GREEN);
-                century16th.setEnabled(false);
-                century17th.setEnabled(false);
-                century19th.setEnabled(false);
+                setCenturyButtons(mainButton, century18th, century16th, century17th, century19th);
             }
         });
         century19th.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent event) {
                 currentCentury = centurySelected[3];
-                mainButton.setEnabled(true);
-                century19th.setBackground(Color.GREEN);
-                century16th.setEnabled(false);
-                century17th.setEnabled(false);
-                century18th.setEnabled(false);
+                setCenturyButtons(mainButton, century19th, century16th, century17th, century18th);
             }
         });
 
@@ -141,6 +125,15 @@ public class gui{
         });
 
     }
+
+    public void setCenturyButtons(JButton mainButton, JButton selection, JButton notSelected1, JButton notSelected2, JButton notSelected3){
+        mainButton.setEnabled(true);
+        selection.setBackground(Color.GREEN);
+        notSelected1.setEnabled(false);
+        notSelected2.setEnabled(false);
+        notSelected3.setEnabled(false);
+    };
+    
     // this method builds question panel
     public void buildQuestionPanel(String label, String fileName, String[] questionArray, String correct, String summary, int INCORRECT_ANSWER){
         JPanel panel = new JPanel();

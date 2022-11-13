@@ -11,19 +11,29 @@ public class data {
     private String[][] questionArray = {{"Monet", "Van Gough", "Taylor Swift", "Picaso"}, {"Philippines", "Sinagpore", "Japan", "Taiwan"}, 
                                                     {"17th Centry", "16th Century", "18th Century", "19th Century"}, {"Starry Night", "Star Night", "Moonlight", "Star at Night"},
                                                     {"Open-Impressionism", "Neo-Impressionism", "Not-Impressed", "Unimpressed"}};
+    private String[] centurySelected = {"16th Century", "17th Century", "18th Century", "19th Century"};
+
     public String[] getHeaderArray() {
         return header.clone();
     }
+    
     public String[] getImageArray() {
         return imageFile.clone();
     }
+
     public String[] getSummaryArray() {
         return summaryField.clone();
     }
+
     public String[] getCorrectAnswerArray() {
         return correctAnswer.clone();
     }
+
     public String[][] getQuestionArray() {
         return questionArray.clone();
+    }
+
+    public String[] getCentury() {
+        return centurySelected.clone();
     }
 }
