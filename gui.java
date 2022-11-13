@@ -129,7 +129,6 @@ public class gui{
                     break;
 
                     case "17th Century":
-                    System.out.println("hello");
                     break;
 
                     case "18th Century":
