@@ -8,41 +8,63 @@ public class gui{
     private JPanel mainPanel;
     private JButton mainButton;
     private JLabel mainLabel;
+    private JLabel extendedLabel;
+    private JButton century16th;
+    private JButton century17th;
+    private JButton century18th;
+    private JButton century19th;
     // sent variables for standard button width and height
     private int width = 221;
     private int height = 25;
+    
+    String[] centurySelected = {"16th Century", "17th Century", "18th Century", "19th Century"};
+    String currentCentury = "";
+    
     // counter for panel
     int COUNTER = 1;
+    // counter for incorrect answers
+    int INCORRECT_ANSWER = 0; 
     // array to hold specific information for each panel
-    String[] header = {"Who is the artist of this painting?", "What country did this painting orginiate from?", "What century is depicted in this painting?", 
-                        "What is the name of this very famous painting?", "This painting ushered in a new wave of Impressionism called..."};
-    String[] imageFile = {"monet_impression_sunrise.png", "great_wave_kanagawa.png", "dance_le_moulin.png", "starry_night.png", "sunday_afternoon.png"};
-    String[] summaryField = {"The 'Impression Sunrise' was painted by Claude Monet in 1872. This painting depicts the port of Le Havre which is Monet's hometown.",
-                        "'The Great Wave off Kanagawa' was painted in 1831 by Japanese artist Hokusai. Considered 'the most famous artwork in Japanese history.'",
-                        "In the 19th century, Pierre-Auguste Renoir painted 'Bal du moulin de la Galette'. Captures the escence of a Paris outing.",
-                        "Vincet van Gogh is arguabely one of the world's most famous aritsts. 'Starry Night' was painted in 1889.",
-                        "By painting'A Sunday Afternoon on the Island of La Grande Jatte', Georges Seurat ushered in Neo-Impressionism in the 19th century."};
-    String[] correctAnswer = {"Monet", "Japan", "19th Century", "Starry Night", "Neo-Impressionism"};
-    String[][] questionArray = {{"Monet", "Van Gough", "Taylor Swift", "Picaso"}, {"Philippines", "Sinagpore", "Japan", "Taiwan"}, 
-                                {"17th Centry", "16th Century", "18th Century", "19th Century"}, {"Starry Night", "Star Night", "Moonlight", "Star at Night"},
-                                {"Open-Impressionism", "Neo-Impressionism", "Not-Impressed", "Unimpressed"}};
-
+    data newClassobj = new data();
+    String[] header = newClassobj.getHeaderArray();
+    String[] imageFile = newClassobj.getImageArray();
+    String[] summaryField = newClassobj.getSummaryArray();
+    String[] correctAnswer = newClassobj.getCorrectAnswerArray();
+    String[][] questionArray = newClassobj.getQuestionArray();
+    
     public gui(){
         // create main frame
         mainFrame = new JFrame();
         
         // button for starting the quiz
         mainButton = new JButton("Start Quiz");
+        mainButton.setPreferredSize(new Dimension(width, height));
+        mainButton.setEnabled(false);
 
         // label to show the user what they are using
         mainLabel = new JLabel("Test Your Art Knowledge (or lack thereof)!");
-
+        extendedLabel = new JLabel("Select the century you want to be quizzed on:");
+        
+        century16th = new JButton("16th Century");
+        century16th.setPreferredSize(new Dimension(width, height));
+        century17th = new JButton("17th Century");
+        century17th.setPreferredSize(new Dimension(width, height));
+        century18th = new JButton("18th Century");
+        century18th.setPreferredSize(new Dimension(width, height));
+        century19th = new JButton("19th Century");
+        century19th.setPreferredSize(new Dimension(width, height));
+        
         // each "page" will be a panel
         mainPanel = new JPanel();
-        mainPanel.setBorder(BorderFactory.createEmptyBorder(275, 275, 275, 275));
-        mainPanel.setLayout(new GridLayout(0, 1));
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(100, 100, 100, 100));
+
         // need to add components into the panel 
         mainPanel.add(mainLabel);
+        mainPanel.add(extendedLabel);
+        mainPanel.add(century16th);
+        mainPanel.add(century17th);
+        mainPanel.add(century18th);
+        mainPanel.add(century19th);
         mainPanel.add(mainButton);
         
         // add main panel to main frame
@@ -54,19 +76,74 @@ public class gui{
         mainFrame.setSize(850,650);
         mainFrame.setVisible(true);
 
+        century16th.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent event) {
+                currentCentury = centurySelected[0];
+                mainButton.setEnabled(true);
+                century16th.setBackground(Color.GREEN);
+                century17th.setEnabled(false);
+                century18th.setEnabled(false);
+                century19th.setEnabled(false);
+            }
+        });
+        century17th.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent event) {
+                currentCentury = centurySelected[1];
+                mainButton.setEnabled(true);
+                century17th.setBackground(Color.GREEN);
+                century16th.setEnabled(false);
+                century18th.setEnabled(false);
+                century19th.setEnabled(false);
+            }
+        });
+        century18th.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent event) {
+                currentCentury = centurySelected[2];
+                mainButton.setEnabled(true);
+                century18th.setBackground(Color.GREEN);
+                century16th.setEnabled(false);
+                century17th.setEnabled(false);
+                century19th.setEnabled(false);
+            }
+        });
+        century19th.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent event) {
+                currentCentury = centurySelected[3];
+                mainButton.setEnabled(true);
+                century19th.setBackground(Color.GREEN);
+                century16th.setEnabled(false);
+                century17th.setEnabled(false);
+                century18th.setEnabled(false);
+            }
+        });
+
         // method to connect the first button to an action when clicked
         mainButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent event){
                 // when mainButton is clicked, the mainPanel will be invisible
                 mainPanel.setVisible(false);
-                // call method to build question panel
-                buildQuestionPanel(header[0], imageFile[0], questionArray[0], correctAnswer[0], summaryField[0]);
+                switch(currentCentury){
+                    case "16th Century":
+                    // call method to build question panel
+                    buildQuestionPanel(header[0], imageFile[0], questionArray[0], correctAnswer[0], summaryField[0], INCORRECT_ANSWER);
+                    break;
+
+                    case "17th Century":
+                    System.out.println("hello");
+                    break;
+
+                    case "18th Century":
+                    break;
+
+                    case "19th Century":
+                    break;
+                }
             }
         });
 
     }
     // this method builds question panel
-    void buildQuestionPanel(String label, String fileName, String[] questionArray, String correct, String summary){
+    public void buildQuestionPanel(String label, String fileName, String[] questionArray, String correct, String summary, int INCORRECT_ANSWER){
         JPanel panel = new JPanel();
         JLabel mainLabel = new JLabel(label);
         JLabel imageLabel = new JLabel();
@@ -80,7 +157,7 @@ public class gui{
         panel.add(imageLabel);
         // loop through array of options
         for (int i = 0; i <questionArray.length; i++){
-            // is option is the correct answer, build summary panel
+            // if option is the correct answer, build summary panel
             if (questionArray[i] == correct){
                 JButton correctAnswer = new JButton(correct);
                 correctAnswer.setPreferredSize(new Dimension(width, height));
@@ -108,6 +185,7 @@ public class gui{
             public void actionPerformed(ActionEvent wrongAnswer) {
                 wrong.setBackground(Color.RED);
                 wrong.setEnabled(false);
+                INCORRECT_ANSWER += 1;
             }
         });
     }
@@ -135,7 +213,7 @@ public class gui{
                     buildResultsPage();
                 }
                 else{
-                    buildQuestionPanel(header[COUNTER], imageFile[COUNTER], questionArray[COUNTER], correctAnswer[COUNTER], summaryField[COUNTER]);
+                    buildQuestionPanel(header[COUNTER], imageFile[COUNTER], questionArray[COUNTER], correctAnswer[COUNTER], summaryField[COUNTER], INCORRECT_ANSWER);
                     COUNTER += 1;
                 }
             }
@@ -146,7 +224,7 @@ public class gui{
     // will turn into results page 
     void buildResultsPage(){
         JPanel panel = new JPanel();
-        JLabel label = new JLabel("THE END!!!!");
+        JLabel label = new JLabel("You selected " + INCORRECT_ANSWER + " incorrect answers!");
         panel.setBorder(BorderFactory.createEmptyBorder(100, 100, 100, 100));
         panel.add(label);
         mainFrame.add(panel, BorderLayout.CENTER);
