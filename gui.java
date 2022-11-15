@@ -9,10 +9,10 @@ public class gui{
     private JButton mainButton;
     private JLabel mainLabel;
     private JLabel extendedLabel;
-    private JButton century16th;
     private JButton century17th;
     private JButton century18th;
     private JButton century19th;
+    private JButton century20th;
     // set variables for standard button width and height
     private int width = 221;
     private int height = 25;
@@ -25,12 +25,31 @@ public class gui{
     int INCORRECT_ANSWER = 0; 
     // array to hold specific information for each panel
     data newClassobj = new data();
-    String[] header = newClassobj.getHeaderArray();
-    String[] imageFile = newClassobj.getImageArray();
-    String[] summaryField = newClassobj.getSummaryArray();
-    String[] correctAnswer = newClassobj.getCorrectAnswerArray();
-    String[][] questionArray = newClassobj.getQuestionArray();
     String[] centurySelected = newClassobj.getCentury();
+    // 17th century data
+    String[] header_17th = newClassobj.getHeaderArray17();
+    String[] imageFile_17th = newClassobj.getImageArray17();
+    String[] summaryField_17th = newClassobj.getSummaryArray17();
+    String[] correctAnswer_17th = newClassobj.getCorrectAnswerArray17();
+    String[][] questionArray_17th = newClassobj.getQuestionArray17();
+    // 18th century data
+    String[] header_18th = newClassobj.getHeaderArray18();
+    String[] imageFile_18th = newClassobj.getImageArray18();
+    String[] summaryField_18th = newClassobj.getSummaryArray18();
+    String[] correctAnswer_18th = newClassobj.getCorrectAnswerArray18();
+    String[][] questionArray_18th = newClassobj.getQuestionArray18();
+    // 19th century data
+    String[] header_19th = newClassobj.getHeaderArray19();
+    String[] imageFile_19th = newClassobj.getImageArray19();
+    String[] summaryField_19th = newClassobj.getSummaryArray19();
+    String[] correctAnswer_19th = newClassobj.getCorrectAnswerArray19();
+    String[][] questionArray_19th = newClassobj.getQuestionArray19();
+    // 20th century data
+    String[] header_20th = newClassobj.getHeaderArray20();
+    String[] imageFile_20th = newClassobj.getImageArray20();
+    String[] summaryField_20th = newClassobj.getSummaryArray20();
+    String[] correctAnswer_20th = newClassobj.getCorrectAnswerArray20();
+    String[][] questionArray_20th = newClassobj.getQuestionArray20();
     
     public gui(){
         // create main frame
@@ -45,14 +64,14 @@ public class gui{
         mainLabel = new JLabel("Test Your Art Knowledge (or lack thereof)!");
         extendedLabel = new JLabel("Select the century you want to be quizzed on:");
         
-        century16th = new JButton("16th Century");
-        century16th.setPreferredSize(new Dimension(width, height));
         century17th = new JButton("17th Century");
         century17th.setPreferredSize(new Dimension(width, height));
         century18th = new JButton("18th Century");
         century18th.setPreferredSize(new Dimension(width, height));
         century19th = new JButton("19th Century");
         century19th.setPreferredSize(new Dimension(width, height));
+        century20th = new JButton("20th Century");
+        century20th.setPreferredSize(new Dimension(width, height));
         
         // each "page" will be a panel
         mainPanel = new JPanel();
@@ -61,10 +80,10 @@ public class gui{
         // need to add components into the panel 
         mainPanel.add(mainLabel);
         mainPanel.add(extendedLabel);
-        mainPanel.add(century16th);
         mainPanel.add(century17th);
         mainPanel.add(century18th);
         mainPanel.add(century19th);
+        mainPanel.add(century20th);
         mainPanel.add(mainButton);
         
         // add main panel to main frame
@@ -73,31 +92,32 @@ public class gui{
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // setting frame title
         mainFrame.setTitle("Art Quiz");
-        mainFrame.setSize(850,650);
+        mainFrame.setSize(740,680);
         mainFrame.setVisible(true);
+        mainFrame.setResizable(false);
 
-        century16th.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent event) {
-                currentCentury = centurySelected[0];
-                setCenturyButtons(mainButton, century16th, century17th, century18th, century19th);
-            }
-        });
         century17th.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent event) {
-                currentCentury = centurySelected[1];
-                setCenturyButtons(mainButton, century17th, century16th, century18th, century19th);
+                currentCentury = centurySelected[0];
+                setCenturyButtons(mainButton, century17th, century18th, century19th, century20th);
             }
         });
         century18th.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent event) {
-                currentCentury = centurySelected[2];
-                setCenturyButtons(mainButton, century18th, century16th, century17th, century19th);
+                currentCentury = centurySelected[1];
+                setCenturyButtons(mainButton, century18th, century17th, century19th, century20th);
             }
         });
         century19th.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent event) {
+                currentCentury = centurySelected[2];
+                setCenturyButtons(mainButton, century19th, century17th, century18th, century20th);
+            }
+        });
+        century20th.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent event) {
                 currentCentury = centurySelected[3];
-                setCenturyButtons(mainButton, century19th, century16th, century17th, century18th);
+                setCenturyButtons(mainButton, century20th, century17th, century18th, century19th);
             }
         });
 
@@ -107,18 +127,21 @@ public class gui{
                 // when mainButton is clicked, the mainPanel will be invisible
                 mainPanel.setVisible(false);
                 switch(currentCentury){
-                    case "16th Century":
-                    // call method to build question panel
-                    buildQuestionPanel(header[0], imageFile[0], questionArray[0], correctAnswer[0], summaryField[0], INCORRECT_ANSWER);
-                    break;
-
                     case "17th Century":
+                    // call method to build question panel
+                    buildQuestionPanel(header_17th[0], imageFile_17th[0], questionArray_17th[0], correctAnswer_17th[0], summaryField_17th[0], INCORRECT_ANSWER);
                     break;
 
                     case "18th Century":
+                    buildQuestionPanel(header_18th[0], imageFile_18th[0], questionArray_18th[0], correctAnswer_18th[0], summaryField_18th[0], INCORRECT_ANSWER);
                     break;
 
                     case "19th Century":
+                    buildQuestionPanel(header_19th[0], imageFile_19th[0], questionArray_19th[0], correctAnswer_19th[0], summaryField_19th[0], INCORRECT_ANSWER);
+                    break;
+
+                    case "20th Century":
+                    buildQuestionPanel(header_20th[0], imageFile_20th[0], questionArray_20th[0], correctAnswer_20th[0], summaryField_20th[0], INCORRECT_ANSWER);
                     break;
                 }
             }
@@ -205,7 +228,24 @@ public class gui{
                     buildResultsPage();
                 }
                 else{
-                    buildQuestionPanel(header[COUNTER], imageFile[COUNTER], questionArray[COUNTER], correctAnswer[COUNTER], summaryField[COUNTER], INCORRECT_ANSWER);
+                    switch(currentCentury){
+                        case "17th Century":
+                        // call method to build question panel
+                        buildQuestionPanel(header_17th[COUNTER], imageFile_17th[COUNTER], questionArray_17th[COUNTER], correctAnswer_17th[COUNTER], summaryField_17th[COUNTER], INCORRECT_ANSWER);
+                        break;
+    
+                        case "18th Century":
+                        buildQuestionPanel(header_18th[COUNTER], imageFile_18th[COUNTER], questionArray_18th[COUNTER], correctAnswer_18th[COUNTER], summaryField_18th[COUNTER], INCORRECT_ANSWER);
+                        break;
+    
+                        case "19th Century":
+                        buildQuestionPanel(header_19th[COUNTER], imageFile_19th[COUNTER], questionArray_19th[COUNTER], correctAnswer_19th[COUNTER], summaryField_19th[COUNTER], INCORRECT_ANSWER);
+                        break;
+    
+                        case "20th Century":
+                        buildQuestionPanel(header_20th[COUNTER], imageFile_20th[COUNTER], questionArray_20th[COUNTER], correctAnswer_20th[COUNTER], summaryField_20th[COUNTER], INCORRECT_ANSWER);
+                        break;
+                    }
                     COUNTER += 1;
                 }
             }
