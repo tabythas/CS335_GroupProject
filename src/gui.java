@@ -1,7 +1,11 @@
+// package src;
 import java.awt.*;
 import java.io.File;
 import javax.swing.*;
 import java.awt.event.*;
+
+// import com.formdev.flatlaf.FlatClientProperties;
+import com.formdev.flatlaf.FlatDarculaLaf;
 
 public class gui{
     private JFrame mainFrame;
@@ -61,8 +65,10 @@ public class gui{
         mainButton.setEnabled(false);
 
         // label to show the user what they are using
-        mainLabel = new JLabel("Test Your Art Knowledge (or lack thereof)!");
+        mainLabel = new JLabel("Test Your Art Knowledge (or lack thereof)!", SwingConstants.CENTER);
         extendedLabel = new JLabel("Select the century you want to be quizzed on:");
+        mainLabel.putClientProperty("FlatLab.styleClass", "h1");
+        mainLabel.putClientProperty( "FlatLaf.style", "font: bold $h1.font" );
         
         century17th = new JButton("17th Century");
         century17th.setPreferredSize(new Dimension(width, height));
@@ -199,6 +205,9 @@ public class gui{
         wrong.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent wrongAnswer) {
                 wrong.setBackground(Color.RED);
+                // TODO: Work around for using Flatlaf
+                // Need to figure out how to use the Java AWT color class
+                // wrong.putClientProperty(FlatClientProperties.STYLE, "Color(255,0,0)");
                 wrong.setEnabled(false);
                 INCORRECT_ANSWER += 1;
             }
@@ -264,6 +273,12 @@ public class gui{
     
     // main method to call and build application
     public static void main(String[] args){
+        // FlatLaf needs to happen before we start working on the GUI
+        try {
+            UIManager.setLookAndFeel(new FlatDarculaLaf());
+        } catch (UnsupportedLookAndFeelException e) {
+            System.out.println(e);
+        }
         new gui();
     }
 }
