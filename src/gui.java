@@ -268,7 +268,15 @@ public class gui{
     //  results page 
     void buildResultsPage(){
         JPanel panel = new JPanel();
-        JLabel label1 = new JLabel("You selected " + INCORRECT_ANSWER + " incorrect answers!", SwingConstants.CENTER);
+        String reviewAnswerText = "You selected ";
+        if (INCORRECT_ANSWER == 0){
+            reviewAnswerText += INCORRECT_ANSWER + " incorrect answers! Congratulations!";
+        } else if (INCORRECT_ANSWER == 1){
+            reviewAnswerText += INCORRECT_ANSWER + " incorrect answer!";
+        } else {
+            reviewAnswerText += INCORRECT_ANSWER + " incorrect answers!";
+        }
+        JLabel label1 = new JLabel(reviewAnswerText, SwingConstants.CENTER);
         JLabel label2 = new JLabel("Quiz yourself on another century or be lame and exit:", SwingConstants.CENTER);
         JButton exitButton = new JButton("Exit");
         JButton tryAgainButton = new JButton("Try Again");
