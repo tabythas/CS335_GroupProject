@@ -190,10 +190,11 @@ public class gui{
         imageLabel.setIcon(image);
         panel.add(imageLabel, SwingConstants.CENTER);
 
+        JButton[] wrongChoices = new JButton[4];
         // loop through array of options
-        for (int i = 0; i <questionArray.length; i++){
+        for (int i = 0; i < questionArray.length; i++){
             // if option is the correct answer, build summary panel
-            if (questionArray[i] == correct){
+            if (questionArray[i].equals(correct)){
                 JButton correctAnswer = new JButton(correct);
                 correctAnswer.setPreferredSize(new Dimension(width, height));
                 panel.add(correctAnswer);
@@ -204,12 +205,23 @@ public class gui{
                         //panel.setVisible(false);
                         //buildSummaryPanel(imageLabel);
                         correctAnswer.setBorder(BorderFactory.createLineBorder(Color.green));
+                        // hooray, you pass!
                         next.setEnabled(true);
                         next.setBorder(BorderFactory.createLineBorder(Color.green));
-                    
+
+                        // if the correct answer is pressed, disable all the wrong answers 
+                        for (int i=0; i<4; i++){
+                            // wrongChoices will always have 1 spot in the array that is null (due to correct answer also being in the questionArray)
+                            try {
+                                disableWrongChoice(wrongChoices[i]);
+                            } catch (Exception e) {
+                                System.out.println("(" + i + ")" + "Exception: " + e);
+                            }
+                        }
                         next.addActionListener(new ActionListener() {
                             public void actionPerformed(ActionEvent nextButton) {
                                 panel.setVisible(false);
+                                // reached 5 questions
                                 if (COUNTER == 5){
                                     buildResultsPage();
                                 }
@@ -242,6 +254,8 @@ public class gui{
             // for each incorrect option, call wrong Button method
             else {
                 JButton option = new JButton(questionArray[i]);
+                // wrongChoices lets us reference the buttons after theyre made
+                wrongChoices[i] = option;
                 option.setPreferredSize(new Dimension(width, height));
                 panel.add(option);
                 option.putClientProperty( "FlatLaf.style", "font: bold $h3.font" );
@@ -258,16 +272,20 @@ public class gui{
         mainFrame.add(panel, BorderLayout.CENTER);
     }
 
-    // button turns red and is disabled
     void wrongButton(JButton wrong){
         wrong.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent wrongAnswer) {
-                wrong.setBorder(BorderFactory.createLineBorder(Color.red));
-                wrong.putClientProperty( "FlatLaf.style", "font: bold $h3.font" );
-                wrong.setEnabled(false);
+                disableWrongChoice(wrong);
                 INCORRECT_ANSWER += 1;
             }
         });
+    }
+
+    // button turns red and is disabled
+    void disableWrongChoice(JButton wrong){
+        wrong.setBorder(BorderFactory.createLineBorder(Color.red));
+        wrong.putClientProperty( "FlatLaf.style", "font: bold $h3.font" );
+        wrong.setEnabled(false);
     }
 
 
