@@ -2,7 +2,7 @@ public class data {
     private String[] centurySelected = {"17th Century", "18th Century", "19th Century", "20th Century"};
 
     // 17th century setters
-    private String[] header_17th = {"The Supper at Emmaus (1601) is a Baroque painting by...", "This prayer book shows the Virgin Mary. It is from the country...", "The controversial paiting, The Night Watch (1642), is a painting by...", 
+    private String[] header_17th = {"The Supper at Emmaus (1601) is a Baroque painting by...", "This prayer book shows the Virgin Mary. It is from the country...", "The controversial painting, The Night Watch (1642), is a painting by...", 
                         "Vermeer's painting Girl with a Pearl Earring is an example of...", "This painting by Vermeer's Baroque (1657) is called..."};
     private String[] imageFile_17th = {"17th_century/supper_at_emmaus.png", "17th_century/virgin_mary.png", "17th_century/night_watch.png", "17th_century/girl_pearl.png", "17th_century/vermeer_baroque.png"};
     private String[] correctAnswer_17th = {"Caravaggio", "Ethiopia", "Rembrandt", "Baroque", "The Milkmaid"};

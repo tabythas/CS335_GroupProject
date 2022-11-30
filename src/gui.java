@@ -169,15 +169,21 @@ public class gui{
     };
     
     // this method builds question panel
-    public void buildQuestionPanel(String label, String fileName, String[] questionArray, String correct, int INCORRECT_ANSWER){
+    public void buildQuestionPanel(String headerText, String fileName, String[] questionArray, String correct, int INCORRECT_ANSWER){
+        // using a JTextArea allows for overflow text to span 2 lines (instead of 1)
+        JTextArea questionPrompt = new JTextArea(2,30);
+        questionPrompt.setWrapStyleWord(true);
+        questionPrompt.setLineWrap(true);
+        questionPrompt.setFocusable(false);
+        questionPrompt.setText(headerText);
+        questionPrompt.putClientProperty("FlatLab.styleClass", "h2");
+        questionPrompt.putClientProperty( "FlatLaf.style", "font: bold $h2.font" );
+
         JPanel panel = new JPanel();
-        JLabel mainLabel = new JLabel(label);
-        JLabel imageLabel = new JLabel();
         panel.setBorder(BorderFactory.createEmptyBorder(75, 75, 75, 75));
-        panel.add(mainLabel, SwingConstants.CENTER);
-        mainLabel.putClientProperty("FlatLab.styleClass", "h2");
-        mainLabel.putClientProperty( "FlatLaf.style", "font: bold $h2.font" );
+        panel.add(questionPrompt, SwingConstants.CENTER);
         
+        JLabel imageLabel = new JLabel();
         File file = new File(fileName);
         String absPath = file.getAbsolutePath();
         ImageIcon image = new ImageIcon(absPath);
