@@ -1,3 +1,5 @@
+package code;
+
 public class data {
     private String[] centurySelected = {"17th Century", "18th Century", "19th Century", "20th Century"};
 
@@ -95,6 +97,16 @@ public class data {
     }
     public String[][] getQuestionArray20() {
         return questionArray_20th.clone();
+    }
+
+    // Easy function to retrieve if the correct answer is in the question array
+    public boolean getCorrectAnswerInArray(String answer,String[] questionArray){
+        for (String s: questionArray){
+            if(s == answer){
+                return true;
+            }
+        }
+        return false;
     }
 
 }

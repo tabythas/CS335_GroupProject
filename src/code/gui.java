@@ -1,4 +1,4 @@
-// package src;
+package code;
 import java.awt.*;
 import java.io.File;
 import javax.swing.*;
@@ -282,6 +282,8 @@ public class gui{
     }
 
     // button turns red and is disabled
+    // make method visible to tests
+    // public static void disableWrongChoice(JButton wrong){
     void disableWrongChoice(JButton wrong){
         wrong.setBorder(BorderFactory.createLineBorder(Color.red));
         wrong.putClientProperty( "FlatLaf.style", "font: bold $h3.font" );
