@@ -190,11 +190,13 @@ public class gui{
         imageLabel.setIcon(image);
         panel.add(imageLabel, SwingConstants.CENTER);
 
+        // JButton[] wrongChoices = new JButton[4];
         JButton[] wrongChoices = new JButton[4];
         // loop through array of options
         for (int i = 0; i < questionArray.length; i++){
             // if option is the correct answer, build summary panel
             if (questionArray[i].equals(correct)){
+                // JButton correctAnswer = new JButton(correct);
                 JButton correctAnswer = new JButton(correct);
                 correctAnswer.setPreferredSize(new Dimension(width, height));
                 panel.add(correctAnswer);
@@ -205,6 +207,8 @@ public class gui{
                         //panel.setVisible(false);
                         //buildSummaryPanel(imageLabel);
                         correctAnswer.setBorder(BorderFactory.createLineBorder(Color.green));
+                        removeButtonFocus(correctAnswer);
+
                         // hooray, you pass!
                         next.setEnabled(true);
                         next.setBorder(BorderFactory.createLineBorder(Color.green));
@@ -251,7 +255,7 @@ public class gui{
                     }
                 });
             }
-            // for each incorrect option, call wrong Button method
+            // for each incorrect option, call wrongButton method
             else {
                 JButton option = new JButton(questionArray[i]);
                 // wrongChoices lets us reference the buttons after theyre made
@@ -260,9 +264,11 @@ public class gui{
                 panel.add(option);
                 option.putClientProperty( "FlatLaf.style", "font: bold $h3.font" );
                 wrongButton(option);
+                removeButtonFocus(option);
             }
         }
 
+        // Create Next button to go to next question
         next = new JButton("Next");
         next.setPreferredSize(new Dimension(350, 40));
         next.putClientProperty( "FlatLaf.style", "font: bold $h2.font" );
@@ -290,6 +296,12 @@ public class gui{
         wrong.setEnabled(false);
     }
 
+    // removes the default automatic blue highlight cycle of button
+    void removeButtonFocus(JButton button){
+        button.setRolloverEnabled(false);
+        button.setFocusPainted(false);
+        button.setFocusable(false);
+    }
 
     //  results page 
     void buildResultsPage(){
