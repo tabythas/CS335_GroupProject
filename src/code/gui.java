@@ -315,11 +315,11 @@ public class gui{
         panel.add(label2);
         panel.add(exitButton);
         panel.add(tryAgainButton);
-        exitButton.setBorder(BorderFactory.createLineBorder(Color.red));
+        exitButton.setBorder(BorderFactory.createLineBorder(Color.gray));
         exitButton.putClientProperty("FlatLab.styleClass", "h2");
         exitButton.putClientProperty( "FlatLaf.style", "font: bold $h2.font" );
         exitButton.setPreferredSize(new Dimension (350, 50));
-        tryAgainButton.setBorder(BorderFactory.createLineBorder(Color.red));
+        tryAgainButton.setBorder(BorderFactory.createLineBorder(Color.gray));
         tryAgainButton.putClientProperty("FlatLab.styleClass", "h2");
         tryAgainButton.putClientProperty( "FlatLaf.style", "font: bold $h2.font" );
         tryAgainButton.setPreferredSize(new Dimension (350, 50));
