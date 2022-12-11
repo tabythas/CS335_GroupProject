@@ -1,12 +1,8 @@
 package tests;
 
 import static org.junit.Assert.*;
-import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import code.data;
-import junit.framework.Assert;
-import junit.framework.TestCase;
 
 /*
  * Limitations of JUnit
@@ -38,52 +34,53 @@ public class dataTest {
         assertEquals(String[].class, dataObject.getCentury().getClass());
     }
 
-    // Note: This test may be deprecated based on how the application develops (ie. moving away from themes)
+    // Note: This test may be deprecated based on how the application develops (ie.
+    // moving away from themes)
     // @Deprecated
     @Test
     public void testGetCenturyReturnsCenturies() {
         // getCentury should return a array of strings that have "century" in them
-        for (String str: dataObject.getCentury()){
+        for (String str : dataObject.getCentury()) {
             boolean centuryIsFound = str.toLowerCase().contains("century");
             assertTrue(centuryIsFound);
         }
     }
 
-    @Test 
+    @Test
     public void testQuestionArrayElementIsArray() {
         // test that the question array is a double nested array
-        for (String[] ele: dataObject.getQuestionArray17()){
+        for (String[] ele : dataObject.getQuestionArray17()) {
             assertEquals(String[].class, ele.getClass());
         }
     }
 
-    @Test 
+    @Test
     public void testQuestionArrayElementHasStringElements() {
         // test that the questionArray for each question has elements that are strings
-        for (String[] qlist: dataObject.getQuestionArray17()){
-            for (int i = 0; i < qlist.length; ++i){
+        for (String[] qlist : dataObject.getQuestionArray17()) {
+            for (int i = 0; i < qlist.length; ++i) {
                 assertEquals(String.class, qlist[i].getClass());
             }
         }
     }
 
-    @Test 
+    @Test
     public void testGetCorrectAnswerInArray() {
         String answer = "Bananas";
-        String[] answers = {"Lettuce", "Bananas", "Carrot", "Arugula"};
+        String[] answers = { "Lettuce", "Bananas", "Carrot", "Arugula" };
         // a little weird when you think about it
         assertTrue(dataObject.getCorrectAnswerInArray(answer, answers));
         assertFalse(dataObject.getCorrectAnswerInArray("noexist", answers));
     }
 
+    // TODO use TestCase @ to minimize the busy work below
     @Test
     public void verifyCorrectAnswersInQuestionArray() {
         // test that the correctAnswer is in the questionsArray
-        // TODO use TestCase @ to minimize the busy work below
 
         // 17th century
         int questionNumber = 0;
-        for (String answer: dataObject.getCorrectAnswerArray17()){
+        for (String answer : dataObject.getCorrectAnswerArray17()) {
             String[] questionArray = dataObject.getQuestionArray17()[questionNumber];
             assertTrue(dataObject.getCorrectAnswerInArray(answer, questionArray));
             questionNumber += 1;
@@ -91,7 +88,7 @@ public class dataTest {
 
         // 18th century
         questionNumber = 0;
-        for (String answer: dataObject.getCorrectAnswerArray18()){
+        for (String answer : dataObject.getCorrectAnswerArray18()) {
             String[] questionArray = dataObject.getQuestionArray18()[questionNumber];
             assertTrue(dataObject.getCorrectAnswerInArray(answer, questionArray));
             questionNumber += 1;
@@ -99,7 +96,7 @@ public class dataTest {
 
         // 19th century
         questionNumber = 0;
-        for (String answer: dataObject.getCorrectAnswerArray19()){
+        for (String answer : dataObject.getCorrectAnswerArray19()) {
             String[] questionArray = dataObject.getQuestionArray19()[questionNumber];
             assertTrue(dataObject.getCorrectAnswerInArray(answer, questionArray));
             questionNumber += 1;
@@ -107,7 +104,7 @@ public class dataTest {
 
         // 20th century
         questionNumber = 0;
-        for (String answer: dataObject.getCorrectAnswerArray20()){
+        for (String answer : dataObject.getCorrectAnswerArray20()) {
             String[] questionArray = dataObject.getQuestionArray20()[questionNumber];
             assertTrue(dataObject.getCorrectAnswerInArray(answer, questionArray));
             questionNumber += 1;
